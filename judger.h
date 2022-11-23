@@ -5,6 +5,7 @@
 #include <QString>
 
 #include "mainwindow.h"
+#include "answer_repo.h"
 
 namespace Ui {
 class Judger;
@@ -22,11 +23,16 @@ public:
 
 public slots:
     void ShowData();
+    void GetRecommendation();
+
+signals:
+    void OpenAnswerRepo(QString, QString, QString);
 
 private:
     Ui::Judger *ui;
     QString code_A;
     QString code_B;
+    QString judgement;
 };
 
 #endif // JUDGER_H

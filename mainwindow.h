@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include "judger.h"
+#include "answer_repo.h"
 
 class Judger;
+class Answer_Repo;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,17 +19,17 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    Judger* Human_Judger;
 
 public slots:
     void GetFile();
+    void OpenRecommendation(QString, QString, QString);
 
 signals:
     void OpenJudger();
 
 private:
     Ui::MainWindow *ui;
-
-
+    Judger* Human_Judger;
+    Answer_Repo* Answer;
 };
 #endif // MAINWINDOW_H

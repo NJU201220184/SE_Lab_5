@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>895</width>
+    <width>1078</width>
     <height>587</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>440</x>
      <y>0</y>
      <width>161</width>
      <height>71</height>
@@ -31,10 +31,10 @@
     <string>Human Judger</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Equal">
+  <widget class="QPushButton" name="Commit">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>710</x>
      <y>510</y>
      <width>161</width>
      <height>51</height>
@@ -46,43 +46,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Equal</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="InEqual">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>510</y>
-     <width>161</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>InEqual</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Abnormal">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>510</y>
-     <width>161</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Abnormal</string>
+    <string>Commit</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="File_A_Code">
@@ -98,7 +62,7 @@
   <widget class="QTextEdit" name="File_B_Code">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>640</x>
      <y>100</y>
      <width>341</width>
      <height>391</height>
@@ -108,9 +72,9 @@
   <widget class="QLineEdit" name="File_A_Name">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>50</x>
      <y>60</y>
-     <width>191</width>
+     <width>341</width>
      <height>31</height>
     </rect>
    </property>
@@ -118,11 +82,57 @@
   <widget class="QLineEdit" name="File_B_Name">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>640</x>
      <y>60</y>
-     <width>191</width>
+     <width>341</width>
      <height>31</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Quit">
+   <property name="geometry">
+    <rect>
+     <x>910</x>
+     <y>510</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>510</y>
+     <width>241</width>
+     <height>51</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>510</y>
+     <width>401</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Please input your judgement:</string>
    </property>
   </widget>
  </widget>
