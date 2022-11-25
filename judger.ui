@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1078</width>
-    <height>587</height>
+    <width>1639</width>
+    <height>732</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,15 +16,15 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>740</x>
      <y>0</y>
-     <width>161</width>
+     <width>381</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>20</pointsize>
     </font>
    </property>
    <property name="text">
@@ -34,8 +34,8 @@
   <widget class="QPushButton" name="Commit">
    <property name="geometry">
     <rect>
-     <x>710</x>
-     <y>510</y>
+     <x>1030</x>
+     <y>640</y>
      <width>161</width>
      <height>51</height>
     </rect>
@@ -52,49 +52,49 @@
   <widget class="QTextEdit" name="File_A_Code">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>100</y>
-     <width>341</width>
-     <height>391</height>
+     <x>30</x>
+     <y>120</y>
+     <width>781</width>
+     <height>501</height>
     </rect>
    </property>
   </widget>
   <widget class="QTextEdit" name="File_B_Code">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>100</y>
-     <width>341</width>
-     <height>391</height>
+     <x>870</x>
+     <y>120</y>
+     <width>741</width>
+     <height>501</height>
     </rect>
    </property>
   </widget>
   <widget class="QLineEdit" name="File_A_Name">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>30</x>
      <y>60</y>
-     <width>341</width>
-     <height>31</height>
+     <width>781</width>
+     <height>51</height>
     </rect>
    </property>
   </widget>
   <widget class="QLineEdit" name="File_B_Name">
    <property name="geometry">
     <rect>
-     <x>640</x>
+     <x>870</x>
      <y>60</y>
-     <width>341</width>
-     <height>31</height>
+     <width>741</width>
+     <height>51</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="Quit">
    <property name="geometry">
     <rect>
-     <x>910</x>
-     <y>510</y>
-     <width>161</width>
+     <x>1230</x>
+     <y>640</y>
+     <width>191</width>
      <height>51</height>
     </rect>
    </property>
@@ -110,8 +110,8 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>510</y>
+     <x>740</x>
+     <y>640</y>
      <width>241</width>
      <height>51</height>
     </rect>
@@ -120,8 +120,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>510</y>
+     <x>350</x>
+     <y>640</y>
      <width>401</width>
      <height>51</height>
     </rect>

@@ -143,8 +143,8 @@ void Answer_Repo::getRecommendation(QString File_A, QString File_B, QString judg
 
         if(!Find)
         {
-            ui->Recommendation_A->setText("No file");
-            ui->Recommendation_B->setText("No file");
+            ui->Recommendation_A->setText("");
+            ui->Recommendation_B->setText("");
             ui->Relation->setText("No Recommendation");
             this->show();
             return;
