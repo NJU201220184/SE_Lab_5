@@ -22,8 +22,8 @@
    <widget class="QPushButton" name="CommitButtom">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>330</y>
+      <x>90</x>
+      <y>340</y>
       <width>201</width>
       <height>81</height>
      </rect>
@@ -40,8 +40,8 @@
    <widget class="QPushButton" name="QuitButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>420</y>
+      <x>540</x>
+      <y>340</y>
       <width>201</width>
       <height>81</height>
      </rect>
@@ -122,6 +122,24 @@
     </property>
     <property name="text">
      <string>Recommendation</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Show">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>340</y>
+      <width>201</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Show</string>
     </property>
    </widget>
   </widget>

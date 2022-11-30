@@ -12,17 +12,20 @@ SOURCES += \
     answer_repo.cpp \
     judger.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    table.cpp
 
 HEADERS += \
     answer_repo.h \
     judger.h \
-    mainwindow.h
+    mainwindow.h \
+    table.h
 
 FORMS += \
     answer_repo.ui \
     judger.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    table.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

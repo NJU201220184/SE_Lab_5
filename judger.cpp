@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
+#include <QMessageBox>
 
 Judger::Judger(QWidget *parent) :
     QWidget(parent),
@@ -12,8 +13,9 @@ Judger::Judger(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Human Judger");
-    this->setFixedSize(1100, 600);
+    this->setFixedSize(1400, 800);
     connect(ui->Quit, &QPushButton::clicked, this, &Judger::close);
+    connect(ui->Check, &QPushButton::clicked, this, &Judger::Check);
     connect(ui->Commit, &QPushButton::clicked, this, &Judger::GetRecommendation);
     connect(ui->Commit, &QPushButton::clicked, this, &Judger::close);
 }
@@ -26,23 +28,84 @@ Judger::~Judger()
 void Judger::ShowData()
 {
     QFont font;
+    code_A = "";
+    code_B = "";
     font.setFamily("Microsoft YaHei");
-    font.setPointSize(15);
-    font.setBold(true);
+    font.setPointSize(12);
+
     ui->File_A_Code->setFont(font);
     ui->File_B_Code->setFont(font);
 
     ui->File_A_Name->setText(File_A);
     QFile FileA(File_A);
-    FileA.open(QIODevice::ReadOnly);
-    QByteArray arrA = FileA.readAll();
-    ui->File_A_Code->setText(arrA);
-
     ui->File_B_Name->setText(File_B);
     QFile FileB(File_B);
-    FileB.open(QIODevice::ReadOnly);
-    QByteArray arrB = FileB.readAll();
-    ui->File_B_Code->setText(arrB);
+
+    if (FileA.open(QIODevice::ReadOnly | QIODevice::Text) && FileB.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        while (true)
+        {
+
+            if (!FileA.atEnd() && !FileB.atEnd())
+            {
+                //qDebug()<<"Both lines are:";
+                QByteArray line_A = FileA.readLine();
+                QByteArray line_B = FileB.readLine();
+                QString strA(line_A);
+                QString strB(line_B);
+                //qDebug()<<strA;
+                qDebug()<<strB;
+                if(strA == strB)
+                {
+                    code_A += strA;
+                    code_A += "\n";
+                    code_B += strB;
+                    code_B += "\n";
+                }
+                else {
+                    code_A += "$\t";
+                    code_B += "$\t";
+                    code_A += strA;
+                    code_A += "\n";
+                    code_B += strB;
+                    code_B += "\n";
+                }
+            }
+
+            else if(!FileA.atEnd())
+            {
+                QByteArray line_A = FileA.readLine();
+                QString strA(line_A);
+                code_A += "+\t";
+                code_B += "-\t";
+                code_A += strA;
+                code_A += "\n";
+                code_B += "\n";
+            }
+
+            else if(!FileB.atEnd())
+            {
+                QByteArray line_B = FileA.readLine();
+                QString strB(line_B);
+                code_A += "-\t";
+                code_B += "+\t";
+                code_B += strB;
+                code_A += "\n";
+                code_B += "\n";
+            }
+
+            else if (FileA.atEnd() && FileB.atEnd())
+            {
+                break;
+            }
+        }
+    }
+
+    //qDebug()<<code_A;
+    //qDebug()<<code_B;
+
+    ui->File_A_Code->setText(code_A);
+    ui->File_B_Code->setText(code_B);
 
     this->show();
 }
@@ -76,3 +139,40 @@ void Judger::GetRecommendation()
     emit OpenAnswerRepo(File_A, File_B, judgement);
 }
 
+void Judger::Check()
+{
+    if(judgement == "Equal")
+    {
+        QFile Equal_File("D:\\SE_Lab5\\Human_Judger\\Output\\Equal.csv");
+        if(Equal_File.open( QIODevice::ReadOnly| QIODevice::Text))
+        {
+            while(!Equal_File.atEnd())
+            {
+                QByteArray line = Equal_File.readLine();
+                QString str(line);
+                if(str.indexOf("file1") != -1)
+                {
+                    qDebug()<<"Not a pair";
+                }
+                else
+                {
+                    int index = str.indexOf(",");
+                    QString file_A = str.left(index);
+                    QString file_B = str.mid(index + 1, str.size() - index - 2);
+                    qDebug()<<(file_A == File_A)<<":"<<(file_B == File_B);
+                    if((file_A == File_A && file_B == File_B) || (file_A == File_B && file_B == File_A))
+                    {
+                        QMessageBox::information(NULL, "Repeated", "You have already judged this before...");
+                        Equal_File.close();
+                        ui->lineEdit->setText("");
+                        this->close();
+                        emit OpenMainWindow();
+                        return;
+                    }
+                }
+            }
+        }
+        QMessageBox::information(NULL, "OK", "This pair hasn't been judged yet...");
+        Equal_File.close();
+    }
+}

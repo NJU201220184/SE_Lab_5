@@ -4,9 +4,11 @@
 #include <QMainWindow>
 #include "judger.h"
 #include "answer_repo.h"
+#include "table.h"
 
 class Judger;
 class Answer_Repo;
+class Table;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +25,7 @@ public:
 public slots:
     void GetFile();
     void OpenRecommendation(QString, QString, QString);
+    void Open();
 
 signals:
     void OpenJudger();
@@ -31,5 +34,6 @@ private:
     Ui::MainWindow *ui;
     Judger* Human_Judger;
     Answer_Repo* Answer;
+    Table* MyTable;
 };
 #endif // MAINWINDOW_H

@@ -23,10 +23,13 @@ public:
 
 public slots:
     void ShowData();
+    void Check();
     void GetRecommendation();
 
 signals:
     void OpenAnswerRepo(QString, QString, QString);
+    void OpenMainWindow();
+
 
 private:
     Ui::Judger *ui;

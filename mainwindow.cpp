@@ -7,6 +7,7 @@
 
 class Judger;
 class Answer_Repo;
+class Table;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setFixedSize(800, 600);
     Human_Judger = new Judger();
     Answer = new Answer_Repo();
+    MyTable = new Table();
 
     QFile Equal_File("D:\\SE_Lab5\\Human_Judger\\Output\\Equal.csv");
     QFile InEqual_File("D:\\SE_Lab5\\Human_Judger\\Output\\InEqual.csv");
@@ -30,8 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
     InEqual_File.close();
 
     connect(ui->QuitButton, &QPushButton::clicked, this, &MainWindow::close);
+    connect(ui->Show, &QPushButton::clicked, MyTable, &Table::show);
     connect(ui->CommitButtom, &QPushButton::clicked, this, &MainWindow::GetFile);
     connect(this, &MainWindow::OpenJudger, Human_Judger, &Judger::ShowData);
+    connect(Human_Judger, &Judger::OpenMainWindow, this, &MainWindow::Open);
     connect(Human_Judger, &Judger::OpenAnswerRepo, Answer, &Answer_Repo::getRecommendation);
     connect(Answer, &Answer_Repo::Recommendation, this, &MainWindow::OpenRecommendation);
 }
@@ -64,6 +68,14 @@ void MainWindow::OpenRecommendation(QString file_A, QString file_B, QString rela
     ui->Path_A->setText(file_A);
     ui->Path_B->setText(file_B);
     ui->Recommendation->setText(relation);
+    this->show();
+}
+
+void MainWindow::Open()
+{
+    ui->Path_A->setText("");
+    ui->Path_B->setText("");
+    ui->Recommendation->setText("No Recommendation");
     this->show();
 }
 
