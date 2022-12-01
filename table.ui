@@ -46,7 +46,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Equal</string>
+    <string>InEqual</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="Pairs">

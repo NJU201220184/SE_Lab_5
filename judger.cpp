@@ -41,68 +41,82 @@ void Judger::ShowData()
     ui->File_B_Name->setText(File_B);
     QFile FileB(File_B);
 
-    if (FileA.open(QIODevice::ReadOnly | QIODevice::Text) && FileB.open(QIODevice::ReadOnly | QIODevice::Text))
+    QVector<QString> File_A_Code;
+    QVector<QString> File_B_Code;
+
+    if (FileA.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        while (true)
+        while (!FileA.atEnd())
         {
+            QByteArray line = FileA.readLine();
+            QString str(line);
+            File_A_Code.push_back(str);
+        }
+        FileA.close();
+    }
 
-            if (!FileA.atEnd() && !FileB.atEnd())
-            {
-                //qDebug()<<"Both lines are:";
-                QByteArray line_A = FileA.readLine();
-                QByteArray line_B = FileB.readLine();
-                QString strA(line_A);
-                QString strB(line_B);
-                //qDebug()<<strA;
-                qDebug()<<strB;
-                if(strA == strB)
-                {
-                    code_A += strA;
-                    code_A += "\n";
-                    code_B += strB;
-                    code_B += "\n";
-                }
-                else {
-                    code_A += "$\t";
-                    code_B += "$\t";
-                    code_A += strA;
-                    code_A += "\n";
-                    code_B += strB;
-                    code_B += "\n";
-                }
-            }
+    if (FileB.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        while (!FileB.atEnd())
+        {
+            QByteArray line = FileB.readLine();
+            QString str(line);
+            File_B_Code.push_back(str);
+        }
+        FileB.close();
+    }
 
-            else if(!FileA.atEnd())
+    if(File_A_Code.size() >= File_B_Code.size())
+    {
+        int i = 0;
+        for(i; i < File_B_Code.size(); ++i)
+        {
+            if(File_A_Code[i] == File_B_Code[i])
             {
-                QByteArray line_A = FileA.readLine();
-                QString strA(line_A);
-                code_A += "+\t";
-                code_B += "-\t";
-                code_A += strA;
-                code_A += "\n";
-                code_B += "\n";
+                code_A += File_A_Code[i];
+                code_B += File_B_Code[i];
             }
-
-            else if(!FileB.atEnd())
-            {
-                QByteArray line_B = FileA.readLine();
-                QString strB(line_B);
-                code_A += "-\t";
-                code_B += "+\t";
-                code_B += strB;
-                code_A += "\n";
-                code_B += "\n";
+            else {
+                code_A += "$\t";
+                code_B += "$\t";
+                code_A += File_A_Code[i];
+                code_B += File_B_Code[i];
             }
-
-            else if (FileA.atEnd() && FileB.atEnd())
-            {
-                break;
-            }
+        }
+        for(i; i < File_A_Code.size(); ++i)
+        {
+            code_A += "+\t";
+            code_B += "-\t";
+            code_A += File_A_Code[i];
+            code_B += "\n";
         }
     }
 
-    //qDebug()<<code_A;
-    //qDebug()<<code_B;
+    else
+    {
+        int i = 0;
+        for(i; i < File_A_Code.size(); ++i)
+        {
+            if(File_A_Code[i] == File_B_Code[i])
+            {
+                code_A += File_A_Code[i];
+                code_B += File_B_Code[i];
+            }
+            else {
+                code_A += "$\t";
+                code_B += "$\t";
+                code_A += File_A_Code[i];
+                code_B += File_B_Code[i];
+            }
+        }
+        for(i; i < File_B_Code.size(); ++i)
+        {
+            code_A += "-\t";
+            code_B += "+\t";
+            code_B += File_B_Code[i];
+            code_A += "\n";
+        }
+    }
 
     ui->File_A_Code->setText(code_A);
     ui->File_B_Code->setText(code_B);
